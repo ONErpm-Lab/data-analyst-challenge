@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: onerm_dataset
+    database: onerpm-dbt
+    schema: onerm_dataset
+    tables:
+      - name: tb_dados_one_rpm
