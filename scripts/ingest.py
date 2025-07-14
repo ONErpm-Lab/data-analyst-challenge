@@ -8,7 +8,7 @@ def process_gz_stream_to_bigquery(link: str, table_id: str, credentials: str, ch
     client = bigquery.Client.from_service_account_json(credentials)
     nome_arquivo = link.split("/")[-1].split("?")[0]
 
-    print(f"🔽 Streaming: {nome_arquivo}")
+    print(f"Streaming: {nome_arquivo}")
     response = requests.get(link, stream=True)
     response.raise_for_status()
 
@@ -32,9 +32,9 @@ def process_gz_stream_to_bigquery(link: str, table_id: str, credentials: str, ch
         job = client.load_table_from_dataframe(df_chunk, table_id, job_config=job_config)
         job.result()
 
-        print(f"📦 Chunk {idx} enviado ({len(df_chunk)} linhas)")
+        print(f"Chunk {idx} enviado ({len(df_chunk)} linhas)")
 
-    print(f"✅ Upload completo: {nome_arquivo}")
+    print(f"Upload completo: {nome_arquivo}")
 
 # 🧠 Executa para todos os links
 def process_lote_links(links_file: str, table_id: str, credentials: str):
