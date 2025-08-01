@@ -1,0 +1,9 @@
+.docker/
+
+**/package-lock.yml
+**/dbt_packages/
+
+**/target/
+**/logs/
+
+**/.user.yml

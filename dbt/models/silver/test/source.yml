@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: public
+    schema: public
+    loader: Create
+
+    tables:
+      - name: test_data_2022_csv000
+        identifier: onerpm_data_analyst_test_data_2022_csv000
+
+      - name: test_data_2022_csv001
+        identifier: onerpm_data_analyst_test_data_2022_csv001     
+
+      - name: test_data_2023_csv000
+        identifier: onerpm_data_analyst_test_data_2023_csv000
+
+      - name: test_data_2023_csv001
+        identifier: onerpm_data_analyst_test_data_2023_csv001     
+
+      - name: test_data_2024_csv000
+        identifier: onerpm_data_analyst_test_data_2024_csv000
+
+      - name: test_data_2024_csv001 
+        identifier: onerpm_data_analyst_test_data_2024_csv001 

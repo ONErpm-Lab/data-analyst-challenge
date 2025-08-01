@@ -1,0 +1,7 @@
+requests
+tqdm
+pyspark
+aiohttp 
+aiofiles
+dbt-core
+dbt-postgres
