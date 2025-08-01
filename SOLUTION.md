@@ -1,6 +1,6 @@
 # ONErpm Data Analyst Challenge
 
-![Arquitetura do código](images/diagram.png)
+![Arquitetura do código](images/fluxo.png)
 
 ## 📊 Coleta de Dados
 
