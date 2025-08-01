@@ -1,3 +1,10 @@
+## Link Dashboard
+
+https://lookerstudio.google.com/reporting/6bec0adc-d0c3-49db-8585-822c9446f7fc
+
+Please, request access to the dashboard.
+
+
 ## Início
 
 Bem vindo ao mundo da música!
