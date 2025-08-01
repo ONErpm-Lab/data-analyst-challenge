@@ -1,0 +1,61 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry
+poetry.lock
+
+# VSCode settings
+.vscode/
+*.code-workspace
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+.venv/
+
+# MacOS
+.DS_Store
+
+# Python environment caches
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# DBT artifacts
+dbt_modules/
+target/
+dbt_packages/
+
+# DuckDB database file
+*.duckdb
+*.tmp
+*.parquet
+*.csv
+*.db
+
+# Logs
+*.log
+
+# Output data or reports
+data/output/
+output/
+reports/
+
+# IPython history
+.history
+
+# Pyenv version files (optional)
+.python-version
+
+# DuckDB database files
+*.duckdb
+*.duckdb.wal
+tmp_*
