@@ -1,5 +1,7 @@
 # ONErpm Data Analyst Challenge
 
+![Arquitetura do código](images/diagram.png)
+
 ## 📊 Coleta de Dados
 
 Para este projeto, o primeiro passo foi a ingestão e transformação inicial dos dados brutos fornecidos em arquivos `.gz`, utilizando **Python** com **PySpark**, e salvando-os em um banco de dados **PostgreSQL** para análises futuras com DBT e visualização com Power BI.
