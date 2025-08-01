@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: agg_revenue_by_year
+    description: Receita de músicas agrupada por ano
+    columns:
+      - name: year
+        description: Campo indica o ano da receita.
+
+      - name: total_revenue
+        description: Quantidade de receita.
+
+  - name: revenue_by_channel_and_genre
+    description: >
+      Top 20 vendas de músicas por receita, agrupadas por tipo de venda (stream/download), loja e gênero musical.
+    columns:
+      - name: is_stream
+        description: Indica se a venda foi via streaming.
+      - name: is_download
+        description: Indica se a venda foi via download.
+      - name: store
+        description: Loja onde a venda foi realizada.
+      - name: genre_name
+        description: Gênero musical do produto vendido.
+      - name: total_revenue
+        description: Receita total gerada para a combinação de tipo de venda, loja e gênero.
+      - name: num_products
+        description: Quantidade de produtos distintos vendidos nesse agrupamento.
+
+  - name: agg_country_monthly_growth
+    description: >
+      Tabela agregada que calcula o crescimento mensal da receita musical por país,
+      com base nos dados do modelo intermediário `int_music_sales`. Inclui a receita
+      por mês, a receita do mês anterior e a taxa de crescimento relativa.
+    columns:
+      - name: country_code
+        description: Código do país (formato ISO 3166-1 alpha-2) onde ocorreram as vendas ou streams.
+
+      - name: month
+        description: Primeiro dia do mês referente ao agrupamento de receita.
+
+      - name: revenue
+        description: Receita total do país no respectivo mês.
+
+      - name: prev_revenue
+        description: Receita total do país no mês anterior (usada como base para o cálculo de crescimento).
+
+      - name: monthly_growth
+        description: Crescimento percentual da receita em relação ao mês anterior. Calculado como `(revenue - prev_revenue) / prev_revenue`.
+
+  - name: genre_stream_conversion
+    description: >
+      Tabela que analisa a conversão de streams em receita por gênero musical.
+      Agrega o total de streams, a receita gerada por streams e calcula a média de receita por stream.
+      Os dados são derivados do modelo intermediário `int_music_sales`.
+    columns:
+      - name: genre_name
+        description: Nome do gênero musical.
+
+      - name: total_streams
+        description: Quantidade total de streams realizados para o gênero.
+
+      - name: stream_revenue
+        description: Receita total gerada pelos streams do gênero.
+
+      - name: revenue_per_stream
+        description: Receita média gerada por cada stream no gênero. Calculado como `stream_revenue / total_streams`.

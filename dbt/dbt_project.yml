@@ -1,0 +1,66 @@
+name: 'DATA_ANALYST'
+version: '1.0'
+config-version: 2
+
+profile: "db"
+
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+seed-paths: ["seeds"]
+model-paths: ["models"]
+
+
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_modules"
+  - "dbt_packages"
+  
+packages:
+  - package: calogica/dbt_expectations
+    version: 0.5.0
+  - package: dbt-labs/dbt_external_tables
+    version: 0.8.4
+  - package: elementary-data/elementary
+    version: 0.7.6
+  - package: sqlfluff-templater-dbt
+    version: 2.3.2
+
+models:
+  +bind: false
+  +persist_docs:
+    relation: true
+    columns: true
+
+  DATA_ANALYST:
+    silver:
+      test:
+        +schema: test
+        +persist_docs:
+            relation: true
+            columns: true    
+    
+    gold:
+      analyses:
+        +schema: analyses
+        +persist_docs:
+            relation: true
+            columns: true   
+
+seeds:
+  DATA_ANALYST:
+    +persist_docs:
+      relation: true
+      columns: true
+    +enabled: true
+    +schema: seeds
+    +delimiter: ","
+
+vars:
+  enforce_rebuild: 0
+  testing_days: 1
+  filter_days_raw: 4
+  filter_days: 4
