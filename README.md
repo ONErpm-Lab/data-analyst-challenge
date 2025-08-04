@@ -15,7 +15,7 @@ Análise de dados da ONErpm para responder 4 perguntas estratégicas sobre cresc
 
 1. **Clone e entre no projeto:**
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/gabriel-garciae/data-analyst-challenge.git
 cd data-analyst-challenge
 ```
 
@@ -136,10 +136,9 @@ data-analyst-challenge/
 ## requisitos de sistema
 
 - **RAM**: 8GB mínimo (16GB recomendado)
-- **Armazenamento**: 50GB livres
+- **Armazenamento**: 100GB livres
 - **CPU**: 4 cores mínimo
-- **Tempo**: 5-10 min ingestão, 2-3 min dbt
-
+- **Tempo**: 5-15 min ingestão, 2-5 min dbt
 ## solução de problemas
 
 ### **Poetry não encontrado**
@@ -170,11 +169,3 @@ poetry run dbt deps
 - **CAGR 11.6%** indica crescimento sustentável
 - **Projeção $80.6M** para 2025
 - **Foco em eficiência** por plataforma
-
-## conclusão
-
-Projeto **100% funcional** com dashboard interativo, análises completas e respostas claras às 4 perguntas estratégicas. Crescimento sustentável com oportunidades em YouTube Shorts e mercados emergentes.
-
----
-
-**Desenvolvido com amor para análise de dados musicais**
