@@ -35,7 +35,7 @@ columns_dict = {
     "genre_name": "TEXT"
 }
 
-print("🔧 Criando tabela vazia onerpm_raw...")
+print(" Criando tabela vazia onerpm_raw")
 conn.execute(f"CREATE OR REPLACE TABLE onerpm_raw ({schema_ddl})")
 print("Tabela criada.")
 
@@ -47,6 +47,6 @@ for file in files:
         FROM read_csv('{file}', columns=$schema, header=False,
             ignore_errors=true, null_padding=true);
     """, {"schema": columns_dict})
-    print(f"✅ {os.path.basename(file)} inserido.")
+    print(f" {os.path.basename(file)} inserido.")
 
 print(" Ingestão finalizada com sucesso.")

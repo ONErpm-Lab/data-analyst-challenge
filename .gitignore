@@ -1,61 +1,33 @@
-# Byte-compiled / optimized / DLL files
+# dbt
+target/
+dbt_packages/
+logs/
+
+# macOS
+.DS_Store
+
+# Python
 __pycache__/
-*.py[cod]
-*$py.class
-
-# Poetry
-poetry.lock
-
-# VSCode settings
-.vscode/
-*.code-workspace
-
-# Virtual environments
-.env
-.venv
+*.pyc
+*.pyo
+*.pyd
+.Python
 env/
 venv/
 .venv/
 
-# MacOS
-.DS_Store
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Python environment caches
-*.egg-info/
-.eggs/
-dist/
-build/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
-
-# DBT artifacts
-dbt_modules/
-target/
-dbt_packages/
-
-# DuckDB database file
-*.duckdb
-*.tmp
-*.parquet
-*.csv
-*.db
-
-# Logs
-*.log
-
-# Output data or reports
-data/output/
-output/
-reports/
-
-# IPython history
-.history
-
-# Pyenv version files (optional)
-.python-version
-
-# DuckDB database files
+# Data files
 *.duckdb
 *.duckdb.wal
-tmp_*
+*.duckdb-shm
+*.duckdb-wal
+
+# Temporary files
+*.tmp
+*.temp

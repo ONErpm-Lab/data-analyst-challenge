@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: projecao_2025
+    description: "Projeção de crescimento para 2025 baseada no CAGR histórico"
+    columns:
+      - name: cagr_anual
+        description: "Compound Annual Growth Rate calculado entre 2022-2024"
+      - name: projecao_2025
+        description: "Valor projetado para receita em 2025"
+      - name: classificacao_crescimento
+        description: "Classificação do crescimento (Alto, Médio, Baixo)"
+
+  - name: estrategia_receita
+    description: "Análise de eficiência por plataforma e gênero musical"
+    columns:
+      - name: item
+        description: "Nome da plataforma ou gênero musical"
+      - name: categoria
+        description: "Tipo do item (plataforma ou genero)"
+      - name: eficiencia_receita_stream
+        description: "Receita por stream (receita/quantidade)"
+      - name: classificacao_eficiencia
+        description: "Classificação da eficiência (Alta, Média, Baixa)"
+
+  - name: tendencias_regionais
+    description: "Análise de crescimento por país/região"
+    columns:
+      - name: country_code
+        description: "Código do país (ISO)"
+      - name: crescimento_percentual
+        description: "Percentual de crescimento entre 2022-2024"
+      - name: classificacao_crescimento
+        description: "Classificação do crescimento regional"
+
+  - name: analytics_dashboard
+    description: "Tabela consolidada para o dashboard Streamlit"
+    columns:
+      - name: categoria
+        description: "Categoria da métrica (plataforma, genero, etc)"
+      - name: metric
+        description: "Nome da métrica"
+      - name: valor
+        description: "Valor da métrica"
+      - name: unidade
+        description: "Unidade de medida da métrica" 
