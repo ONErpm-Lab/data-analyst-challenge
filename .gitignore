@@ -1,0 +1,33 @@
+# dbt
+target/
+dbt_packages/
+logs/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data files
+*.duckdb
+*.duckdb.wal
+*.duckdb-shm
+*.duckdb-wal
+
+# Temporary files
+*.tmp
+*.temp

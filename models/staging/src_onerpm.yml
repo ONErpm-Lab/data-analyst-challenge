@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: onerpm
+    description: "Dados brutos carregados a partir do arquivo onerpm.duckdb"
+    tables:
+      - name: onerpm_raw
+        description: "Dados brutos de receita por stream ou download provenientes da ONERPM"
+        columns:
+          - name: store
+            description: "Plataforma ou loja onde ocorreu o stream ou download"
+          - name: date
+            description: "Data da transação"
+          - name: product
+            description: "Nome ou identificador do produto (por exemplo, música ou álbum)"
+          - name: quantity
+            description: "Quantidade de unidades transmitidas ou baixadas"
+          - name: is_stream
+            description: "Indicador booleano que informa se a transação foi um stream"
+          - name: is_download
+            description: "Indicador booleano que informa se a transação foi um download"
+          - name: revenue
+            description: "Receita gerada pela transação"
+          - name: currency
+            description: "Moeda na qual a receita foi registrada"
+          - name: country_code
+            description: "Código do país onde ocorreu a transação (código ISO)"
+          - name: genre_id
+            description: "Identificador interno representando o gênero do produto"
+          - name: genre_name
+            description: "Nome do gênero musical"
