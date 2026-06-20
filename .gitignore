@@ -1,0 +1,7 @@
+# Ignore .venv folder
+.venv
+
+# Ignore the data csv/gz files
+*.csv
+*.gz
+
