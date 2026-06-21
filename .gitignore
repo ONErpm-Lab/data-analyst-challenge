@@ -5,3 +5,7 @@
 *.csv
 *.gz
 
+# Ignore the duckdb database (big file)
+*.duckdb
+*.duckdb.wal
+
