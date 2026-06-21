@@ -9,3 +9,7 @@
 *.duckdb
 *.duckdb.wal
 
+# Ignore dbt files
+.dbt/.user.yml
+/analytics_dbt/target
+/analytics_dbt/logs
