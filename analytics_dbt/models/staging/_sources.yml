@@ -9,37 +9,37 @@ sources:
           Raw data for the year 2022, based on the first csv file provided.
           Columns are unnamed in the raw source.
         columns:
-          - name: column_0
+          - name: column00
             description: >
               store
-          - name: column_1
+          - name: column01
             description: >
               date
-          - name: column_2
+          - name: column02
             description: >
-              provided
-          - name: column_3
+              product
+          - name: column03
             description: >
               quantity
-          - name: column_4
+          - name: column04
             description: >
               is_stream
-          - name: column_5
+          - name: column05
             description: >
               is_download
-          - name: column_6
+          - name: column06
             description: >
               revenue
-          - name: column_7
+          - name: column07
             description: >
               currency
-          - name: column_8
+          - name: column08
             description: >
               country_code
-          - name: column_9
+          - name: column09
             description: >
               genre_id
-          - name: column_10
+          - name: column10
             description: >
               genre_name
       - name: raw_2022_csv001
@@ -47,37 +47,37 @@ sources:
           Raw data for the year 2022, based on the second csv file provided.
           Columns are unnamed in the raw source.
         columns:
-          - name: column_0
+          - name: column00
             description: >
               store
-          - name: column_1
+          - name: column01
             description: >
               date
-          - name: column_2
+          - name: column02
             description: >
-              provided
-          - name: column_3
+              product
+          - name: column03
             description: >
               quantity
-          - name: column_4
+          - name: column04
             description: >
               is_stream
-          - name: column_5
+          - name: column05
             description: >
               is_download
-          - name: column_6
+          - name: column06
             description: >
               revenue
-          - name: column_7
+          - name: column07
             description: >
               currency
-          - name: column_8
+          - name: column08
             description: >
               country_code
-          - name: column_9
+          - name: column09
             description: >
               genre_id
-          - name: column_10
+          - name: column10
             description: >
               genre_name
       - name: raw_2023_csv000
@@ -85,37 +85,37 @@ sources:
           Raw data for the year 2023, based on the first csv file provided.
           Columns are unnamed in the raw source.
         columns:
-          - name: column_0
+          - name: column00
             description: >
               store
-          - name: column_1
+          - name: column01
             description: >
               date
-          - name: column_2
+          - name: column02
             description: >
-              provided
-          - name: column_3
+              product
+          - name: column03
             description: >
               quantity
-          - name: column_4
+          - name: column04
             description: >
               is_stream
-          - name: column_5
+          - name: column05
             description: >
               is_download
-          - name: column_6
+          - name: column06
             description: >
               revenue
-          - name: column_7
+          - name: column07
             description: >
               currency
-          - name: column_8
+          - name: column08
             description: >
               country_code
-          - name: column_9
+          - name: column09
             description: >
               genre_id
-          - name: column_10
+          - name: column10
             description: >
               genre_name
       - name: raw_2023_csv001
@@ -123,37 +123,37 @@ sources:
           Raw data for the year 2023, based on the second csv file provided.
           Columns are unnamed in the raw source.
         columns:
-          - name: column_0
+          - name: column00
             description: >
               store
-          - name: column_1
+          - name: column01
             description: >
               date
-          - name: column_2
+          - name: column02
             description: >
-              provided
-          - name: column_3
+              product
+          - name: column03
             description: >
               quantity
-          - name: column_4
+          - name: column04
             description: >
               is_stream
-          - name: column_5
+          - name: column05
             description: >
               is_download
-          - name: column_6
+          - name: column06
             description: >
               revenue
-          - name: column_7
+          - name: column07
             description: >
               currency
-          - name: column_8
+          - name: column08
             description: >
               country_code
-          - name: column_9
+          - name: column09
             description: >
               genre_id
-          - name: column_10
+          - name: column10
             description: >
               genre_name
       - name: raw_2024_csv000
@@ -161,37 +161,37 @@ sources:
           Raw data for the year 2024, based on the first csv file provided.
           Columns are unnamed in the raw source.
         columns:
-          - name: column_0
+          - name: column00
             description: >
               store
-          - name: column_1
+          - name: column01
             description: >
               date
-          - name: column_2
+          - name: column02
             description: >
-              provided
-          - name: column_3
+              product
+          - name: column03
             description: >
               quantity
-          - name: column_4
+          - name: column04
             description: >
               is_stream
-          - name: column_5
+          - name: column05
             description: >
               is_download
-          - name: column_6
+          - name: column06
             description: >
               revenue
-          - name: column_7
+          - name: column07
             description: >
               currency
-          - name: column_8
+          - name: column08
             description: >
               country_code
-          - name: column_9
+          - name: column09
             description: >
               genre_id
-          - name: column_10
+          - name: column10
             description: >
               genre_name
       - name: raw_2024_csv001
@@ -199,37 +199,37 @@ sources:
           Raw data for the year 2024, based on the second csv file provided.
           Columns are unnamed in the raw source.
         columns:
-          - name: column_0
+          - name: column00
             description: >
               store
-          - name: column_1
+          - name: column01
             description: >
               date
-          - name: column_2
+          - name: column02
             description: >
-              provided
-          - name: column_3
+              product
+          - name: column03
             description: >
               quantity
-          - name: column_4
+          - name: column04
             description: >
               is_stream
-          - name: column_5
+          - name: column05
             description: >
               is_download
-          - name: column_6
+          - name: column06
             description: >
               revenue
-          - name: column_7
+          - name: column07
             description: >
               currency
-          - name: column_8
+          - name: column08
             description: >
               country_code
-          - name: column_9
+          - name: column09
             description: >
               genre_id
-          - name: column_10
+          - name: column10
             description: >
               genre_name
       - name: raw_2024_csv002
@@ -237,36 +237,36 @@ sources:
           Raw data for the year 2024, based on the third csv file provided.
           Columns are unnamed in the raw source.
         columns:
-          - name: column_0
+          - name: column00
             description: >
               store
-          - name: column_1
+          - name: column01
             description: >
               date
-          - name: column_2
+          - name: column02
             description: >
-              provided
-          - name: column_3
+              product
+          - name: column03
             description: >
               quantity
-          - name: column_4
+          - name: column04
             description: >
               is_stream
-          - name: column_5
+          - name: column05
             description: >
               is_download
-          - name: column_6
+          - name: column06
             description: >
               revenue
-          - name: column_7
+          - name: column07
             description: >
               currency
-          - name: column_8
+          - name: column08
             description: >
               country_code
-          - name: column_9
+          - name: column09
             description: >
               genre_id
-          - name: column_10
+          - name: column10
             description: >
               genre_name
