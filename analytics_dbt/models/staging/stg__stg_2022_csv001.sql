@@ -12,8 +12,8 @@ renamed as (
         column01 as date_of_event, --not using date as name (keyword)
         column02 as product,
         column03 as quantity,
-        column04 as is_stream,
-        column05 as is_download,
+        column04::boolean as is_stream,
+        column05::boolean as is_download,
         column06 as revenue,
         column07 as currency,
         column08 as country_code,
