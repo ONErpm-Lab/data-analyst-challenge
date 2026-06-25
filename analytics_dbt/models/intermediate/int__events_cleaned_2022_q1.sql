@@ -2,14 +2,16 @@ with
 
 deduplicated as (
     select * from {{ ref('stg__stg_2022_csv000') }}
+
     where
-        month(date_of_event) between 1 and 3
+        date_of_event between '2022-01-01' and '2022-03-31'
 
     union
 
     select * from {{ ref('stg__stg_2022_csv001') }}
+
     where
-        month(date_of_event) between 1 and 3
+        date_of_event between '2022-01-01' and '2022-03-31'
 ),
 
 reversal_classification as (
@@ -19,6 +21,7 @@ reversal_classification as (
             when quantity < 0 then 1
             else 0
         end as is_reversal
+
     from
         deduplicated
 ),
@@ -35,8 +38,9 @@ fill_null_country_code as (
         currency,
         genre_id,
         genre_name,
-        is_reversal,
+        is_reversal::boolean as is_reversal,
         coalesce(country_code, 'NOT INFORMED') as country_code
+
     from
         reversal_classification
 )
