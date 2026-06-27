@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: mart__revenue_by_store
+    description: >
+      Monthly revenue and quantity totals broken down by store (Amazon, YouTube, Spotify, Facebook, etc.).
+      Each store-month includes a year-over-year comparison against the same store and month in the prior year.
+      Enables comparison of store performance over time to inform distribution strategy.
+      Grain: one row per store, month and currency.
+    columns:
+      - name: store
+        description: The store or platform where the event was recorded.
+        tests:
+          - not_null
+      - name: date_of_event
+        description: First day of the month the events took place (truncated to month).
+        tests:
+          - not_null
+      - name: currency
+        description: Currency of the revenue amounts.
+        tests:
+          - not_null
+      - name: stream_quantity
+        description: Total number of streams for the store in the month, excluding reversals.
+      - name: download_quantity
+        description: Total number of downloads for the store in the month, excluding reversals.
+      - name: total_quantity
+        description: Total streams and downloads for the store in the month, excluding reversals.
+        tests:
+          - not_null
+      - name: reversal_quantity
+        description: Total quantity from reversal events for the store in the month (negative values). Zero when no reversals exist.
+        tests:
+          - not_null
+      - name: gross_revenue
+        description: Total revenue for the store in the month excluding reversals (receita bruta — before fees and costs).
+        tests:
+          - not_null
+      - name: net_revenue
+        description: Total revenue for the store in the month including reversals (receita líquida — gross_revenue minus costs).
+        tests:
+          - not_null
+      - name: prior_year_net_revenue
+        description: Net revenue for the same store and month in the prior year. Null for months in 2022.
+      - name: year_over_year_growth_pct
+        description: >
+          Percentage change in net revenue compared to the same store and month in the prior year.
+          Null for months in 2022. Positive = growth, negative = decline.
+      - name: event_year
+        description: Calendar year extracted from date_of_event.
+        tests:
+          - not_null
+      - name: event_month
+        description: Calendar month (1–12) extracted from date_of_event.
+        tests:
+          - not_null

@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: mart__revenue_year_over_year
+    description: >
+      Annual revenue totals with year-over-year growth rate and a projection for the next year.
+      projected_next_year_net_revenue is populated only for the most recent year in the dataset,
+      using the average YoY growth rate across all available years as the projection rate.
+      Grain: one row per year and currency.
+    columns:
+      - name: event_year
+        description: Calendar year.
+        tests:
+          - not_null
+      - name: currency
+        description: Currency of the revenue amounts.
+        tests:
+          - not_null
+      - name: stream_quantity
+        description: Total number of streams in the year, excluding reversals.
+      - name: download_quantity
+        description: Total number of downloads in the year, excluding reversals.
+      - name: total_quantity
+        description: Total streams and downloads in the year, excluding reversals.
+        tests:
+          - not_null
+      - name: reversal_quantity
+        description: Total quantity from reversal events in the year (negative values). Zero when no reversals exist.
+        tests:
+          - not_null
+      - name: gross_revenue
+        description: Total revenue in the year excluding reversals (receita bruta — before fees and costs).
+        tests:
+          - not_null
+      - name: net_revenue
+        description: Total revenue in the year including reversals (receita líquida — gross_revenue minus costs).
+        tests:
+          - not_null
+      - name: prior_year_net_revenue
+        description: Net revenue from the prior year. Null for the earliest year in the dataset (2022).
+      - name: year_over_year_growth_pct
+        description: >
+          Percentage change in net revenue compared to the prior year.
+          Null for the earliest year (2022). Positive = growth, negative = decline.
+      - name: projected_next_year_net_revenue
+        description: >
+          Projected net revenue for the following year, calculated by applying the average
+          year-over-year growth rate to the current year's net revenue.
+          Populated only for the most recent year in the dataset (2024). Null for all other years.

@@ -41,7 +41,7 @@ fill_null_country_code as (
         currency,
         genre_id,
         genre_name,
-        is_reversal,
+        is_reversal::boolean as is_reversal,
         coalesce(country_code, 'NOT INFORMED') as country_code
     from
         reversal_classification

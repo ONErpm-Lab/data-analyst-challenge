@@ -1,25 +1,14 @@
 version: 2
 
 models:
-  - name: int__events_cleaned_2022_q3
+  - name: int__events_grouped_2023
     description: >
-      Cleaned and deduplicated events for Q3 2022 (2022-07-01 to 2022-09-30).
-      Adds is_reversal flag and fills null country_code with 'NOT INFORMED'.
+      All 2023 events aggregated to monthly grain.
+      Unions Q1-Q4 cleaned models and groups by store, genre, country, type flags and month.
+      quantity and revenue are summed. product is dropped at this stage.
     columns:
       - name: store
         description: The store name.
-        tests:
-          - not_null
-      - name: date_of_event
-        description: The date of the event.
-        tests:
-          - not_null
-      - name: product
-        description: The product name.
-        tests:
-          - not_null
-      - name: quantity
-        description: The quantity of the product.
         tests:
           - not_null
       - name: is_stream
@@ -36,10 +25,6 @@ models:
           - accepted_values:
               arguments:
                 values: [true, false]
-      - name: revenue
-        description: The revenue of the event.
-        tests:
-          - not_null
       - name: currency
         description: The currency of the revenue.
         tests:
@@ -52,6 +37,10 @@ models:
         description: The genre name of the product.
         tests:
           - not_null
+      - name: country_code
+        description: The country code where the event took place.
+        tests:
+          - not_null
       - name: is_reversal
         description: Whether the event is a reversal (quantity < 0).
         tests:
@@ -59,7 +48,15 @@ models:
           - accepted_values:
               arguments:
                 values: [true, false]
-      - name: country_code
-        description: The country code where the event took place. Defaults to 'NOT INFORMED' when null.
+      - name: date_of_event
+        description: First day of the month the event took place (truncated to month).
+        tests:
+          - not_null
+      - name: quantity
+        description: Total quantity of events for the group in the month.
+        tests:
+          - not_null
+      - name: revenue
+        description: Total revenue for the group in the month.
         tests:
           - not_null

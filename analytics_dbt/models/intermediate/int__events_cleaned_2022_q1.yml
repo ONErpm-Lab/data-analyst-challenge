@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: int__events_cleaned_2022_q1
+    description: >
+      Cleaned and deduplicated events for Q1 2022 (2022-01-01 to 2022-03-31).
+      Adds is_reversal flag and fills null country_code with 'NOT INFORMED'.
+    columns:
+      - name: store
+        description: The store name.
+        tests:
+          - not_null
+      - name: date_of_event
+        description: The date of the event.
+        tests:
+          - not_null
+      - name: product
+        description: The product name.
+        tests:
+          - not_null
+      - name: quantity
+        description: The quantity of the product.
+        tests:
+          - not_null
+      - name: is_stream
+        description: Whether the event is a stream.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: is_download
+        description: Whether the event is a download.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: revenue
+        description: The revenue of the event.
+        tests:
+          - not_null
+      - name: currency
+        description: The currency of the revenue.
+        tests:
+          - not_null
+      - name: genre_id
+        description: The genre ID of the product.
+        tests:
+          - not_null
+      - name: genre_name
+        description: The genre name of the product.
+        tests:
+          - not_null
+      - name: is_reversal
+        description: Whether the event is a reversal (quantity < 0).
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: country_code
+        description: The country code where the event took place. Defaults to 'NOT INFORMED' when null.
+        tests:
+          - not_null

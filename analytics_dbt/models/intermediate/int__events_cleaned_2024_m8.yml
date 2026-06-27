@@ -1,9 +1,9 @@
 version: 2
 
 models:
-  - name: int__events_cleaned_2022_q3
+  - name: int__events_cleaned_2024_m8
     description: >
-      Cleaned and deduplicated events for Q3 2022 (2022-07-01 to 2022-09-30).
+      Cleaned and deduplicated events for August 2024 (2024-08-01 to 2024-08-31).
       Adds is_reversal flag and fills null country_code with 'NOT INFORMED'.
     columns:
       - name: store

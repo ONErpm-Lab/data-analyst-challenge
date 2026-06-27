@@ -4,14 +4,14 @@ deduplicated as (
     select * from {{ ref('stg__stg_2022_csv000') }}
 
     where
-        date_of_event between '2024-04-01' and '2024-06-30'
+        date_of_event between '2022-04-01' and '2022-06-30'
 
     union
 
     select * from {{ ref('stg__stg_2022_csv001') }}
 
     where
-        date_of_event between '2024-04-01' and '2024-06-30'
+        date_of_event between '2022-04-01' and '2022-06-30'
 ),
 
 reversal_classification as (

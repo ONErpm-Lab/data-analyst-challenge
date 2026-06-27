@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: mart__revenue_by_region
+    description: >
+      Monthly revenue and quantity totals broken down by country, region and subregion.
+      Each country-month includes a year-over-year comparison against the same country and month in the prior year.
+      Country codes from events are joined with the countries seed to enrich with geographic hierarchy.
+      Rows with country_code = 'NOT INFORMED' will have null country_name, region and subregion.
+      Grain: one row per country_code, month and currency.
+    columns:
+      - name: country_code
+        description: ISO 3166-1 alpha-2 country code, or 'NOT INFORMED' when unavailable.
+        tests:
+          - not_null
+      - name: country_name
+        description: Full country name from the countries seed. Null when country_code is 'NOT INFORMED'.
+      - name: region
+        description: Continent-level region from the countries seed (e.g. Americas, Europe, Asia).
+      - name: subregion
+        description: Sub-regional grouping from the countries seed (e.g. South America, Northern Europe).
+      - name: date_of_event
+        description: First day of the month the events took place (truncated to month).
+        tests:
+          - not_null
+      - name: currency
+        description: Currency of the revenue amounts.
+        tests:
+          - not_null
+      - name: stream_quantity
+        description: Total number of streams for the country in the month, excluding reversals.
+      - name: download_quantity
+        description: Total number of downloads for the country in the month, excluding reversals.
+      - name: total_quantity
+        description: Total streams and downloads for the country in the month, excluding reversals.
+        tests:
+          - not_null
+      - name: reversal_quantity
+        description: Total quantity from reversal events for the country in the month (negative values). Zero when no reversals exist.
+        tests:
+          - not_null
+      - name: gross_revenue
+        description: Total revenue for the country in the month excluding reversals (receita bruta — before fees and costs).
+        tests:
+          - not_null
+      - name: net_revenue
+        description: Total revenue for the country in the month including reversals (receita líquida — gross_revenue minus costs).
+        tests:
+          - not_null
+      - name: prior_year_net_revenue
+        description: Net revenue for the same country and month in the prior year. Null for months in 2022.
+      - name: year_over_year_growth_pct
+        description: >
+          Percentage change in net revenue compared to the same country and month in the prior year.
+          Null for months in 2022. Positive = growth, negative = decline.
+      - name: event_year
+        description: Calendar year extracted from date_of_event.
+        tests:
+          - not_null
+      - name: event_month
+        description: Calendar month (1–12) extracted from date_of_event.
+        tests:
+          - not_null

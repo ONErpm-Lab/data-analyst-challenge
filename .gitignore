@@ -5,6 +5,9 @@
 *.csv
 *.gz
 
+# Keep the dbt seed file
+!analytics_dbt/seeds/*.csv
+
 # Ignore the duckdb database (big file)
 *.duckdb
 *.duckdb.wal
