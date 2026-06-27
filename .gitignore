@@ -1,0 +1,18 @@
+# Ignore .venv folder
+.venv
+
+# Ignore the data csv/gz files
+*.csv
+*.gz
+
+# Keep the dbt seed file
+!analytics_dbt/seeds/*.csv
+
+# Ignore the duckdb database (big file)
+*.duckdb
+*.duckdb.wal
+
+# Ignore dbt files
+.dbt/.user.yml
+/analytics_dbt/target
+/analytics_dbt/logs

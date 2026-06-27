@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: int__events_grouped_2024
+    description: >
+      All 2024 events aggregated to monthly grain.
+      Unions Q1, Q2 and monthly (m7-m12) cleaned models and groups by store, genre, country, type flags and month.
+      quantity and revenue are summed. product is dropped at this stage.
+    columns:
+      - name: store
+        description: The store name.
+        tests:
+          - not_null
+      - name: is_stream
+        description: Whether the event is a stream.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: is_download
+        description: Whether the event is a download.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: currency
+        description: The currency of the revenue.
+        tests:
+          - not_null
+      - name: genre_id
+        description: The genre ID of the product.
+        tests:
+          - not_null
+      - name: genre_name
+        description: The genre name of the product.
+        tests:
+          - not_null
+      - name: country_code
+        description: The country code where the event took place.
+        tests:
+          - not_null
+      - name: is_reversal
+        description: Whether the event is a reversal (quantity < 0).
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: date_of_event
+        description: First day of the month the event took place (truncated to month).
+        tests:
+          - not_null
+      - name: quantity
+        description: Total quantity of events for the group in the month.
+        tests:
+          - not_null
+      - name: revenue
+        description: Total revenue for the group in the month.
+        tests:
+          - not_null

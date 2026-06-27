@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: stg__stg_2022_csv000
+    description: >
+      This table is based on the raw data in the database, with light transformations.
+      It contains partial data from the year 2022.
+      Column names were added in this stage.
+    columns:
+      - name: store
+        description: >
+          The store name.
+        tests:
+          - not_null
+      - name: date_of_event
+        description: >
+          The date of the event.
+        tests:
+          - not_null
+      - name: product
+        description: >
+          The product name.
+        tests:
+          - not_null
+      - name: quantity
+        description: >
+          The quantity of the product.
+        tests:
+          - not_null
+      - name: is_stream
+        description: >
+          Whether the product is a stream.
+        tests:
+          - not_null
+      - name: is_download
+        description: >
+          Whether the product is a download.
+        tests:
+          - not_null
+      - name: revenue
+        description: >
+          The revenue of the product.
+        tests:
+          - not_null
+      - name: currency
+        description: >
+          The currency of the revenue.
+        tests:
+          - not_null
+      - name: country_code
+        description: >
+          The country code of the country where the event took place. May be null in source data.
+      - name: genre_id
+        description: >
+          The genre ID of the product.
+        tests:
+          - not_null
+      - name: genre_name
+        description: >
+          The genre name of the product.
+        tests:
+          - not_null

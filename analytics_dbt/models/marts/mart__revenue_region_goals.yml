@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: mart__revenue_region_goals
+    description: >
+      Annual revenue totals per country with year-over-year growth rate and a 2025 projection,
+      enriched with geographic hierarchy (region and subregion) from the countries seed.
+      projected_next_year_net_revenue is populated only for the most recent year in the dataset (2024),
+      using each country's own average YoY growth rate as the projection rate.
+      Intended for the Regional Chiefs dashboard page to support goal-setting per country and region.
+      Grain: one row per country_code, year, and currency.
+    columns:
+      - name: country_code
+        description: ISO 3166-1 alpha-2 country code. 'NOT INFORMED' for events with no country data.
+        tests:
+          - not_null
+      - name: country_name
+        description: Full country name from the countries seed. Null for 'NOT INFORMED' country codes.
+      - name: region
+        description: Continent-level region from the countries seed (e.g. Americas, Europe, Asia).
+      - name: subregion
+        description: Sub-continental region from the countries seed (e.g. South America, Northern Europe).
+      - name: currency
+        description: Currency of the revenue amounts.
+        tests:
+          - not_null
+      - name: event_year
+        description: Calendar year.
+        tests:
+          - not_null
+      - name: stream_quantity
+        description: Total number of streams in the year, excluding reversals.
+      - name: download_quantity
+        description: Total number of downloads in the year, excluding reversals.
+      - name: total_quantity
+        description: Total streams and downloads in the year, excluding reversals.
+        tests:
+          - not_null
+      - name: reversal_quantity
+        description: Total quantity from reversal events in the year (negative values). Zero when no reversals exist.
+        tests:
+          - not_null
+      - name: gross_revenue
+        description: Total revenue in the year excluding reversals (receita bruta).
+        tests:
+          - not_null
+      - name: net_revenue
+        description: Total revenue in the year including reversals (receita líquida).
+        tests:
+          - not_null
+      - name: prior_year_net_revenue
+        description: Net revenue from the prior year for this country. Null for the earliest year (2022).
+      - name: year_over_year_growth_pct
+        description: >
+          Percentage change in net revenue compared to the prior year for this country.
+          Null for the earliest year (2022). Positive = growth, negative = decline.
+      - name: projected_next_year_net_revenue
+        description: >
+          Projected net revenue for 2025, calculated by applying this country's average
+          year-over-year growth rate to its 2024 net revenue.
+          Populated only for the most recent year (2024). Null for all other years.
