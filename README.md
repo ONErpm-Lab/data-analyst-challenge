@@ -52,12 +52,13 @@ excel/
 - [Apresentação do Case Técnico](https://docs.google.com/presentation/d/1I8CfT7VvKXRk9JaavCxSSXxNJTn1FJIiWJhTQO1-PoY/edit?usp=sharing)
 
 
-
 ---
 
 ## Observações
 
 A base de dados original continha mais de 2 bilhões de registros. Para otimizar o processamento, foi desenvolvido um pipeline em Python utilizando DuckDB para realizar a agregação dos dados antes da importação para o Power BI.
+
+Os dados de dezembro de 2024 apresentavam volume significativamente inferior aos demais meses, indicando que o período estava incompleto. Por esse motivo, as comparações anuais (YoY) e análises acumuladas foram realizadas considerando o mesmo período disponível dos anos anteriores (YTD).
 
 ## Transformações realizadas
 
