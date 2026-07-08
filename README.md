@@ -1,64 +1,77 @@
-## Início
+# Case Técnico - ONErpm
 
-Bem vindo ao mundo da música!
+## Sobre o projeto
 
-A ONErpm está liderando o futuro do negócio da música, redefinindo o que significa ser uma gravadora e distribuidora para a era moderna.
+Este repositório contém minha solução para o case técnico da ONErpm.
 
-A missão da ONErpm é capacitar artistas e criadores com soluções robustas de negócios e marketing de música, sustentadas pela tecnologia, enfatizando a transparência em tudo o que fazemos. 
+O objetivo foi analisar dados de consumo musical, identificar oportunidades de negócio e desenvolver um dashboard executivo em Power BI para apoiar a tomada de decisão.
 
-Quando você se junta à ONErpm, você se torna parte de uma comunidade global de profissionais de música e vídeo. Nós aproveitamos essa rede para criar uma maior visibilidade e oportunidade para nossos membros.
+---
 
-A transparência é a chave para tudo o que fazemos, desde a criação e execução de uma campanha de marketing até a interpretação de streaming e análises financeiras.
+## Ferramentas utilizadas
 
-## Problema
+- Python
+- DuckDB
+- SQL
+- Power BI
+- DAX
+- Excel
+- Google Apresentações
 
-Atualmente temos a necessidade de identificar as principais fontes de receita da empresa e se há um padrão global ou por região. Por isso, precisamos responder algumas perguntas:
-* Qual a projeção de crescimento esperado para 2025?
-* Qual seria a melhor estratégia para potencializar o aumento de receita?
-* Conseguimos identificar alguma região que esteja com tendência e potencial de crescimento e de queda?
-* Qual gênero tem a melhor conversão de streams x receita?
-  
-Gostaríamos de montar um dashboard executivo com os principais indicadores como sugestão de acompanhamento periódico com as características: 
-* Visão global para Diretores Executivos
-* Visão para Chefes Regionais com sugestão de metas a serem atingidas
-* Métricas: receita, streams (com base em vendas)
-* Parâmetros: lojas (Amazon, YouTube, Spotify, Facebook)
-* Filtros: Country / Genre
+---
 
-## Dados
+## Fluxo do projeto
 
-* Os dados tem a seguinte estrutura: store, date, product, quantity, is_stream, is_download, revenue, currency, country_code, genre_id, genre_name
-* Os arquivos ficarão disponíveis pelos links até o dia 09/07/2026.
+1. Download dos arquivos de dados (.gz)
+2. Processamento e agregação dos dados com Python e DuckDB
+3. Geração de arquivos Parquet otimizados
+4. Modelagem dos dados no Power BI
+5. Construção do dashboard e dos indicadores
+6. Desenvolvimento da apresentação executiva com os principais insights
 
-[onerpm_data_analyst_test_data_2022_csv000.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2022_csv000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260702T134502Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604791&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a83be4ad5aeed33379ba83f7b6b462a0943c1c8625da977520baebc2dee25034)
+---
 
-[onerpm_data_analyst_test_data_2022_csv001.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2022_csv001.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260702T134502Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604791&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=18bcf445f27816e6bbcbe98d4df1b5e8b4197652c43c12f5e9dd035d0367282c)
+## Materiais do repositório
 
-[onerpm_data_analyst_test_data_2023_csv000.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2023_csv000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260702T134502Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604791&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9f57cfa02fa63696fbb7631c78731516c7e76ab771eb21b6c6a671ac09c33171)
+## Estrutura do repositório
 
-[onerpm_data_analyst_test_data_2023_csv001.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2023_csv001.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260702T134502Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604791&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=af76816c364ecb7a07fbc34d39377ae4907ab7be9c6080c66002e53487970f4a)
+```text
+python/
+    Scripts de processamento dos dados
 
-[onerpm_data_analyst_test_data_2024_csv000.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2024_csv000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260702T134502Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604791&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c6229d2902dd63df9935d5a3e91be5809d8c75bd930df7b378e9c6c73097f252)
+excel/
+    Arquivo de excel para cálculo da projeção
+```
 
-[onerpm_data_analyst_test_data_2024_csv001.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2024_csv001.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260702T134502Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604790&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=c036c8522564967794cf0f92cc7fb2d0420c69efb21c291a58d4946adae710c0)
+### Power BI
 
-[onerpm_data_analyst_test_data_2024_csv002.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2024_csv002.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260702T134502Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604790&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260702%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=92f6626c4318a34f731e27deac9af6ebac714222586a42b3cf1ebcc0ae52c64b)
+- [Dashboard Interativo](https://app.powerbi.com/view?r=eyJrIjoiZjM1YTdiYjctZjYyYS00YTJiLWIxNjUtYzY0OTNiZTIxNTYzIiwidCI6ImYxOTI4MzIwLWU0YjItNDNhZS05NTg3LWY0NzY2Zjg2YzEzYyJ9)
+
+### Apresentação
+
+- [Apresentação do Case Técnico](https://docs.google.com/presentation/d/1I8CfT7VvKXRk9JaavCxSSXxNJTn1FJIiWJhTQO1-PoY/edit?usp=sharing)
 
 
-## Requisitos
+---
 
-* Faça um fork deste repositório e abra um PR quando estiver finalizado com instruções para acessarmos o resultado.
-* Utilize a ferramenta Power BI da Microsoft.
+## Observações
 
-## Diferencial
+A base de dados original continha mais de 2 bilhões de registros. Para otimizar o processamento, foi desenvolvido um pipeline em Python utilizando DuckDB para realizar a agregação dos dados antes da importação para o Power BI.
 
-* Utilize o DBT - Data Build Tool.
+Os dados de dezembro de 2024 apresentavam volume significativamente inferior aos demais meses, indicando que o período estava incompleto. Por esse motivo, as comparações anuais (YoY) e análises acumuladas foram realizadas considerando o mesmo período disponível dos anos anteriores (YTD).
 
-## Perfil que buscamos
+## Transformações realizadas
 
-* Comunicativo
-* Autodidata
-* Automotivado
-* Curioso
-* Gostar de trabalhar em equipe
-* Compromissado
+Durante a preparação dos dados, foram realizadas algumas transformações para facilitar a análise e tornar os indicadores mais representativos do negócio.
+
+- Criação do campo "consumption_type" com o grupamento das lojas (DSPs) em categorias de **Streaming** e **Social Media**, permitindo comparar consumo voltado à monetização com consumo voltado à descoberta de conteúdo.
+- Criação do campo "store_group", agrupando as diferentes strings do "Store" que se referem às mesmas lojas. Ex: Spotify Free -> Spotify
+- Criação da dimensão **Region** a partir do código dos países, possibilitando análises tanto por país quanto por região.
+- Criação do campo "main_genre" com o agrupamento do "genre" em grupos macro. Ex: Baile Funk -> Funk, Trap -> Hip Hop/Rap
+- Agregação dos dados em diferentes granularidades (mensal e anual) para otimizar o desempenho do Power BI.
+- Criação de uma tabela calendário para permitir análises temporais, comparações com o mesmo período do ano anterior (YoY) e indicadores acumulados.
+- Desenvolvimento de parâmetros dinâmicos para alternar entre:
+  - Receita, Streams e RPM;
+  - Valores absolutos e percentuais;
+  - Visualização por País ou Região.
+- Criação de KPIs comparativos com o mesmo período do ano anterior e benchmark do mercado.
