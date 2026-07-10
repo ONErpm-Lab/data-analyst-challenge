@@ -505,3 +505,33 @@ Eficiência de Monetização
 A solução combina engenharia de dados, modelagem analítica e business
 intelligence para transformar um conjunto de dados de grande volume em
 indicadores executivos e direcionamentos de negócio.
+
+
+## Acesso ao resultado
+
+O dashboard final pode ser acessado por meio do arquivo Power BI disponibilizado na Release `v1.0.0` deste repositório.
+
+### Dashboard com dados carregados
+
+1. Acesse a seção **Releases** do repositório.
+2. Abra a Release **Revenue Growth Intelligence v1.0.0**.
+3. Na seção **Assets**, baixe o arquivo `Revenue.Growth.Intelligence.pbix`.
+4. Abra o arquivo utilizando o Power BI Desktop.
+
+O arquivo PBIX contém o modelo analítico e os dados importados utilizados na construção do dashboard.
+
+### Projeto Power BI versionável
+
+A estrutura PBIP também está disponível em:
+
+`powerbi/`
+
+O projeto contém:
+
+- `Revenue Growth Intelligence.Report/`
+- `Revenue Growth Intelligence.SemanticModel/`
+- `Revenue Growth Intelligence.pbip`
+
+Os arquivos locais de cache do Power BI (`cache.abf` e `localSettings.json`) não são versionados.
+
+Por esse motivo, o projeto PBIP pode ser aberto para inspeção da estrutura do relatório e do modelo semântico, enquanto o arquivo PBIX disponibilizado na Release deve ser utilizado para visualizar o dashboard final com os dados carregados.
