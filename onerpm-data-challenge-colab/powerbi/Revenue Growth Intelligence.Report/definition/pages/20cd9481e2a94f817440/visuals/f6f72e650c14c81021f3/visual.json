@@ -1,0 +1,109 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f6f72e650c14c81021f3",
+  "position": {
+    "x": 10.249181558479471,
+    "y": 199.85904039034969,
+    "z": 8000,
+    "height": 261.35412974122653,
+    "width": 526.1246533352795,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_sales"
+                    }
+                  },
+                  "Property": "country_code"
+                }
+              },
+              "queryRef": "mart_sales.country_code",
+              "nativeQueryRef": "country_code",
+              "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Streams"
+                }
+              },
+              "queryRef": "_Measures.Streams",
+              "nativeQueryRef": "Streams"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Receita"
+                }
+              },
+              "queryRef": "_Measures.Receita",
+              "nativeQueryRef": "Receita",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Crescimento YoY Regional Válido"
+                }
+              },
+              "queryRef": "_Measures.Crescimento YoY Regional Válido",
+              "nativeQueryRef": "Crescimento YoY Regional Válido"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Regional Growth vs. Revenue'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

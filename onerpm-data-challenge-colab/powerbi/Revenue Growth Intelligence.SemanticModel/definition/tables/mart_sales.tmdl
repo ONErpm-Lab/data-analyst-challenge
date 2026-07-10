@@ -1,0 +1,174 @@
+table mart_sales
+	lineageTag: f7bbab3f-6187-4aef-aab4-79c43e3acd47
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: fdf3d080-c2cc-4d30-a32d-1ef18e2faaaa
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 82b0974b-2bd1-46a1-9b80-8410b970a49e
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column store
+		dataType: string
+		lineageTag: 01de5dbd-56bf-485a-abb3-3a799e6d8950
+		summarizeBy: none
+		sourceColumn: store
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_code
+		dataType: string
+		lineageTag: a5956817-829c-4abb-953c-32002e15596b
+		summarizeBy: none
+		sourceColumn: country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column genre_id
+		dataType: int64
+		formatString: 0
+		lineageTag: cc52ed1a-9861-47e5-bebb-a2c1297962d8
+		summarizeBy: sum
+		sourceColumn: genre_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column genre_name
+		dataType: string
+		lineageTag: cca46d5f-15ed-4f38-b982-cdf2219f8d08
+		summarizeBy: none
+		sourceColumn: genre_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales
+		dataType: int64
+		formatString: 0
+		lineageTag: 68385ebb-15cd-4e11-8e35-564c765130f1
+		summarizeBy: sum
+		sourceColumn: sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: double
+		lineageTag: b6e943dd-4e57-4cea-89a4-cda0e7751ab5
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue
+		dataType: double
+		lineageTag: 7b5d4923-d4a1-4c41-b0a4-44cd9d671df1
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column streams
+		dataType: double
+		lineageTag: b748898a-e4f2-44b3-9114-0ab5a44f6d03
+		summarizeBy: sum
+		sourceColumn: streams
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column downloads
+		dataType: double
+		lineageTag: 28f5843a-331d-4ef3-bed7-939f4b66b6b3
+		summarizeBy: sum
+		sourceColumn: downloads
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_ticket
+		dataType: double
+		lineageTag: 6be20d4c-7858-4f83-88a3-837153794cc6
+		summarizeBy: sum
+		sourceColumn: avg_ticket
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_revenue_per_stream
+		dataType: double
+		lineageTag: e86462b9-7308-4e81-8b4b-061675a26cc2
+		summarizeBy: sum
+		sourceColumn: avg_revenue_per_stream
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_revenue_per_download
+		dataType: double
+		lineageTag: 20fb4b49-e41e-4147-a4b6-b89643be6f0d
+		summarizeBy: sum
+		sourceColumn: avg_revenue_per_download
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_revenue_per_sale
+		dataType: double
+		lineageTag: 84c2d0d1-8fc5-468a-8d3b-e398bbd1fff6
+		summarizeBy: sum
+		sourceColumn: avg_revenue_per_sale
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date =
+			
+			DATE(
+			    mart_sales[year],
+			    mart_sales[month],
+			    1
+			)
+		formatString: dd/mm/yyyy
+		lineageTag: 164a4b36-4c90-4d64-9d35-a32adef4f65d
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition mart_sales = m
+		mode: import
+		source =
+				let
+				    Fonte = Parquet.Document(File.Contents(path_file & "mart_sales.parquet"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

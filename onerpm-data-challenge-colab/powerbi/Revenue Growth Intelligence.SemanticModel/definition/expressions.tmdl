@@ -1,0 +1,8 @@
+/// Caminho onde esta salvo o arquivo mart_sales.parquet.
+expression path_file = "C:\onerpm-data-challenge-colab\powerbi\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 83b9b1dd-c2bb-4d40-be60-7736ed00b507
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+

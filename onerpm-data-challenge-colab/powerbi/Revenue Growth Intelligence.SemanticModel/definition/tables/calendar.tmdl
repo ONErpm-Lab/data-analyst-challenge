@@ -1,0 +1,89 @@
+table calendar
+	lineageTag: 168eb40f-895b-4dd0-b3e6-56b2176f15bb
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: dd/mm/yyyy
+		lineageTag: e38a1ee9-72d5-44f8-8bb1-f327af6c9c32
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Year
+		formatString: 0
+		lineageTag: 955b008f-41e7-4cb5-be2f-bd4dbf9b689a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: b11c71de-6a15-4f52-b6f6-ea1feeba4439
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 935b7dfd-626e-4e2d-8bde-192bea0bc3f1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		lineageTag: c1cd11a1-c2ca-4b12-af9d-7bbc5347dcd8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year Month]
+		sortByColumn: 'Year Month Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 5e1b9887-e0b1-483a-b973-707ce71fea43
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Sort' =
+			
+			Calendar[Year] * 100
+			    + Calendar[Month Number]
+		formatString: 0
+		lineageTag: c79373b5-93cf-4eb7-b3c5-da90bd81853c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calendar = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(
+				        DATE(2022, 1, 1),
+				        DATE(2025, 12, 31)
+				    ),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month Name", FORMAT([Date], "MMM"),
+				    "Year Month", FORMAT([Date], "YYYY-MM"),
+				    "Quarter", "Q" & FORMAT([Date], "Q")
+				)
+
+	annotation PBI_Id = a74808e57a1a4ff383cc1452ceadfad7
+

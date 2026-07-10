@@ -1,0 +1,21 @@
+name: "onerpm_data_challenge"
+version: "1.0.0"
+config-version: 2
+
+profile: "onerpm"
+
+model-paths: ["models"]
+
+target-path: "target"
+clean-targets: ["target"]
+
+models:
+  onerpm_data_challenge:
+    staging:
+      materialized: view
+
+    intermediate:
+      materialized: view
+
+    marts:
+      materialized: view

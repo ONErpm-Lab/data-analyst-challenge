@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "c314df4438b5ad4bb459",
+  "position": {
+    "x": 750,
+    "y": 483,
+    "z": 9002,
+    "height": 236,
+    "width": 529,
+    "tabOrder": 9002
+  },
+  "visual": {
+    "visualType": "treemap",
+    "query": {
+      "queryState": {
+        "Group": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_sales"
+                    }
+                  },
+                  "Property": "genre_name"
+                }
+              },
+              "queryRef": "mart_sales.genre_name",
+              "nativeQueryRef": "genre_name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Receita"
+                }
+              },
+              "queryRef": "_Measures.Receita",
+              "nativeQueryRef": "Receita"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Revenue Share by Genre'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "53a891968d002363dcae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_sales"
+              }
+            },
+            "Property": "genre_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f3c541142e39d91135b6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Receita"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cf3ba3ec0651158e0876",
+        "type": "VisualTopN",
+        "filter": {
+          "Version": 2,
+          "From": [],
+          "Where": [
+            {
+              "Condition": {
+                "VisualTopN": {
+                  "ItemCount": 15
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "a9ebd0d861e0bc9cf4aa",
+  "position": {
+    "x": 10.249181558479471,
+    "y": 473.17054861646892,
+    "z": 11000,
+    "height": 245.98035740350733,
+    "width": 1267.4821193986279,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_sales"
+                    }
+                  },
+                  "Property": "country_code"
+                }
+              },
+              "queryRef": "mart_sales.country_code",
+              "nativeQueryRef": "country_code",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Receita Período Atual"
+                }
+              },
+              "queryRef": "_Measures.Receita Período Atual",
+              "nativeQueryRef": "Receita Período Atual"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Crescimento YoY Regional Válido"
+                }
+              },
+              "queryRef": "_Measures.Crescimento YoY Regional Válido",
+              "nativeQueryRef": "Crescimento YoY Regional Válido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Status Crescimento"
+                }
+              },
+              "queryRef": "_Measures.Status Crescimento",
+              "nativeQueryRef": "Status Crescimento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Meta Sugerida"
+                }
+              },
+              "queryRef": "_Measures.Meta Sugerida",
+              "nativeQueryRef": "Meta Sugerida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Taxa Meta Sugerida"
+                }
+              },
+              "queryRef": "_Measures.Taxa Meta Sugerida",
+              "nativeQueryRef": "Taxa Meta Sugerida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Gap para Meta"
+                }
+              },
+              "queryRef": "_Measures.Gap para Meta",
+              "nativeQueryRef": "Gap para Meta"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Receita Período Atual"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "148.11369255508393D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_sales.country_code"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "174.2032877614295D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Gap para Meta"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "183.93176292996387D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Meta Sugerida"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "200.9299580092323D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Receita Período Atual"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "136.03566311579206D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Status Crescimento"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "139.6655799343989D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Taxa Meta Sugerida"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "234.74754231827606D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Crescimento YoY Regional Válido"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Regional Target Performance'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

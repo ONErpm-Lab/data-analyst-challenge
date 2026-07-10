@@ -1,0 +1,4 @@
+relationship cccda0e6-5a88-a89c-957f-f9cf3c8b2076
+	fromColumn: mart_sales.date
+	toColumn: calendar.Date
+
