@@ -28,7 +28,7 @@ Gostaríamos de montar um dashboard executivo com os principais indicadores como
 ## Dados
 
 * Os dados tem a seguinte estrutura: store, date, product, quantity, is_stream, is_download, revenue, currency, country_code, genre_id, genre_name
-* Os arquivos ficarão disponíveis pelos links até o dia 09/07/2026.
+* Os arquivos ficarão disponíveis pelos links até o dia 30/07/2026.
 
 [onerpm_data_analyst_test_data_2022_csv000.gz](https://1r-test-statsload.s3.dualstack.us-east-1.amazonaws.com/onerpm_data_analyst_test_data/onerpm_data_analyst_test_data_2022_csv000.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260723T191631Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604791&X-Amz-Credential=AKIA3YUKOX75BLGJJRWV%2F20260723%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=2d20f6d933e81678ee578c7847fc1695dcacf5ad04a6f46ac0f87505f5d7016a)
 
