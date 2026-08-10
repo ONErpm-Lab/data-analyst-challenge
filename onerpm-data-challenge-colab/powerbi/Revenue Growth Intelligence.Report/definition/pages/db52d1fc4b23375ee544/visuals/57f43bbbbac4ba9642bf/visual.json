@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "57f43bbbbac4ba9642bf",
+  "position": {
+    "x": 0,
+    "y": 58.468837248357374,
+    "z": 0,
+    "height": 165.08848164242082,
+    "width": 428.198249260029,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Modelo Forecast Selecionado"
+                }
+              },
+              "queryRef": "_Measures.Modelo Forecast Selecionado",
+              "nativeQueryRef": "Modelo Forecast Selecionado"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

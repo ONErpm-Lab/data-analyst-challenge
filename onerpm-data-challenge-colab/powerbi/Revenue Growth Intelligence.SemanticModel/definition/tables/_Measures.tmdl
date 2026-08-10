@@ -1,0 +1,1272 @@
+table _Measures
+	lineageTag: 0fab771b-3b53-4d91-b837-647b1041a4c6
+
+	measure Receita =
+			
+			SUM(mart_sales[revenue])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 01. Base
+		lineageTag: af2be4b1-5622-46fe-9b35-9422fc305606
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Streams =
+			
+			SUM(mart_sales[streams])
+		formatString: #,0
+		displayFolder: 01. Base
+		lineageTag: f554bcbc-2a8f-426f-8337-41c7dbffff78
+
+	measure Downloads =
+			
+			SUM(mart_sales[downloads])
+		formatString: #,0
+		displayFolder: 01. Base
+		lineageTag: b09f8d5b-77f8-49f0-a040-53a03f8809ce
+
+	measure Quantidade =
+			
+			SUM(mart_sales[quantity])
+		formatString: #,0
+		displayFolder: 01. Base
+		lineageTag: e32e5463-4a36-45f5-ba6f-4b27a895c301
+
+	measure Vendas =
+			
+			SUM(mart_sales[sales])
+		formatString: #,0
+		displayFolder: 01. Base
+		lineageTag: 0125cde2-70a8-47c4-ab32-1e4729f484cb
+
+	measure 'Ticket Médio' =
+			
+			DIVIDE(
+			    [Receita],
+			    [Vendas],
+			    0
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 02. Monetização
+		lineageTag: 73682e3c-c985-48b5-95f2-d56fcaf3c86e
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Receita por Stream' =
+			
+			DIVIDE(
+			    [Receita],
+			    [Streams],
+			    0
+			)
+		formatString: #,0.000000
+		displayFolder: 02. Monetização
+		lineageTag: 24835101-5006-4a68-8e55-0a2e8abdcd7f
+
+	measure 'Receita por Download' =
+			
+			DIVIDE(
+			    [Receita],
+			    [Downloads],
+			    0
+			)
+		formatString: #,0.000000
+		displayFolder: 02. Monetização
+		lineageTag: 360560da-e570-4365-8eaa-72cf7a1f1097
+
+	measure 'Receita LY' =
+			
+			CALCULATE(
+			    [Receita],
+			    SAMEPERIODLASTYEAR('Calendar'[Date])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 03. Crescimento
+		lineageTag: 2e78e28c-35b6-419c-a5e6-53db2a3e8df0
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Crescimento YoY' =
+			
+			DIVIDE(
+			    [Receita] - [Receita LY],
+			    [Receita LY],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 03. Crescimento
+		lineageTag: 6a4aec27-6fb4-409b-85e3-e15765bc3ea2
+
+	measure 'Receita Mês Anterior' =
+			
+			CALCULATE(
+			    [Receita],
+			    DATEADD('Calendar'[Date], -1, MONTH)
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 03. Crescimento
+		lineageTag: fe55767c-7b34-40bd-ab08-555e85cb1062
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Crescimento MoM' =
+			
+			DIVIDE(
+			    [Receita] - [Receita Mês Anterior],
+			    [Receita Mês Anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 03. Crescimento
+		lineageTag: 26563249-4bc4-46ae-bcc4-dd5019d47ba1
+
+	measure 'Receita 2022 Jan-Nov' =
+			
+			CALCULATE(
+			    [Receita],
+			    'Calendar'[Year] = 2022,
+			    'Calendar'[Month Number] <= 11
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 04. Forecast
+		lineageTag: 3108a354-4779-4471-a201-e5cd65ee25a8
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Receita 2023 Jan-Nov' =
+			
+			CALCULATE(
+			    [Receita],
+			    'Calendar'[Year] = 2023,
+			    'Calendar'[Month Number] <= 11
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 04. Forecast
+		lineageTag: 5df43c12-204c-4fe1-812f-57c769f81d47
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Receita 2024 Jan-Nov' =
+			
+			CALCULATE(
+			    [Receita],
+			    'Calendar'[Year] = 2024,
+			    'Calendar'[Month Number] <= 11
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 04. Forecast
+		lineageTag: 984f144d-d269-49e7-ae6c-d88435c8365e
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Receita 2024 Anualizada' =
+			
+			DIVIDE(
+			    [Receita 2024 Jan-Nov],
+			    11,
+			    0
+			) * 12
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 04. Forecast
+		lineageTag: e26768a2-66d8-408e-b3e7-e62889a08f47
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Projeção Receita 2025' =
+			
+			/*
+			    OBJETIVO
+			    ----------------------------------------------------------------
+			    Projetar a receita anual de 2025 utilizando uma seleção dinâmica
+			    entre CAGR e Regressão Linear.
+			
+			    CONTEXTO
+			    ----------------------------------------------------------------
+			    O histórico disponível possui apenas três anos: 2022, 2023 e 2024.
+			
+			    Como dezembro/2024 possui dados incompletos, o ano de 2024 é
+			    anualizado com base na receita acumulada entre janeiro e novembro.
+			
+			    SELEÇÃO DINÂMICA DO MODELO
+			    ----------------------------------------------------------------
+			    1. CAGR
+			       Utilizado quando as taxas de crescimento históricas apresentam
+			       comportamento relativamente estável.
+			
+			       Critério:
+			           | Crescimento 2024 - Crescimento 2023 | <= 5 p.p.
+			
+			       Neste cenário, assume-se que a trajetória de crescimento possui
+			       estabilidade suficiente para aplicação de uma taxa composta.
+			
+			    2. REGRESSÃO LINEAR
+			       Utilizada quando existe uma mudança relevante entre as taxas
+			       históricas de crescimento.
+			
+			       Critério:
+			           | Crescimento 2024 - Crescimento 2023 | > 5 p.p.
+			
+			       Neste cenário, o CAGR poderia suavizar excessivamente a mudança
+			       de tendência. A regressão linear é utilizada para capturar a
+			       direção observada na série anual de receitas.
+			
+			    LIMITAÇÃO
+			    ----------------------------------------------------------------
+			    A seleção é uma abordagem simplificada devido ao histórico limitado.
+			
+			    Com uma série temporal maior, seria possível avaliar modelos de
+			    séries temporais mais robustos e validar o modelo por backtesting.
+			*/
+			
+			VAR Receita2022 =
+			    [Receita 2022 Jan-Nov]
+			
+			VAR Receita2023 =
+			    [Receita 2023 Jan-Nov]
+			
+			VAR Receita2024 =
+			    [Receita 2024 Anualizada]
+			
+			
+			// ================================================================
+			// Crescimento histórico
+			// ================================================================
+			
+			VAR Cresc23 =
+			    DIVIDE(
+			        Receita2023 - Receita2022,
+			        Receita2022,
+			        0
+			    )
+			
+			VAR Cresc24 =
+			    DIVIDE(
+			        [Receita 2024 Jan-Nov] - Receita2023,
+			        Receita2023,
+			        0
+			    )
+			
+			
+			// ================================================================
+			// Mede a mudança entre as taxas históricas de crescimento
+			//
+			// <= 5 p.p. → crescimento considerado relativamente estável
+			// >  5 p.p. → mudança relevante na trajetória de crescimento
+			// ================================================================
+			
+			VAR Variacao =
+			    ABS(
+			        Cresc24 - Cresc23
+			    )
+			
+			
+			// ================================================================
+			// MODELO 1: CAGR
+			//
+			// Utilizado em cenário de crescimento relativamente estável.
+			// Calcula a taxa composta entre 2022 e 2024 e aplica a taxa
+			// sobre a receita anualizada de 2024.
+			// ================================================================
+			
+			VAR CAGR =
+			    POWER(
+			        DIVIDE(
+			            Receita2024,
+			            Receita2022,
+			            0
+			        ),
+			        1 / 2
+			    ) - 1
+			
+			VAR ProjecaoCAGR =
+			    Receita2024
+			        * (1 + CAGR)
+			
+			
+			// ================================================================
+			// MODELO 2: REGRESSÃO LINEAR
+			//
+			// Utilizado quando existe mudança relevante entre as taxas
+			// históricas de crescimento.
+			//
+			// X representa o índice temporal:
+			//     2022 = 1
+			//     2023 = 2
+			//     2024 = 3
+			//
+			// A projeção de 2025 utiliza X = 4.
+			//
+			// Equação:
+			//     Y = mX + b
+			// ================================================================
+			
+			VAR XMedia =
+			    2
+			
+			VAR YMedia =
+			    DIVIDE(
+			        Receita2022
+			            + Receita2023
+			            + Receita2024,
+			        3,
+			        0
+			    )
+			
+			
+			// Inclinação da reta
+			
+			VAR Numerador =
+			      (1 - XMedia)
+			        * (Receita2022 - YMedia)
+			
+			    + (2 - XMedia)
+			        * (Receita2023 - YMedia)
+			
+			    + (3 - XMedia)
+			        * (Receita2024 - YMedia)
+			
+			VAR Denominador =
+			      POWER(1 - XMedia, 2)
+			    + POWER(2 - XMedia, 2)
+			    + POWER(3 - XMedia, 2)
+			
+			VAR m =
+			    DIVIDE(
+			        Numerador,
+			        Denominador,
+			        0
+			    )
+			
+			
+			// Intercepto da reta
+			
+			VAR b =
+			    YMedia
+			        - m * XMedia
+			
+			
+			// Projeta o quarto período temporal: 2025
+			
+			VAR ProjecaoLinear =
+			    b
+			        + m * 4
+			
+			
+			// ================================================================
+			// Seleção dinâmica
+			//
+			// Crescimento estável    → CAGR
+			// Mudança de tendência   → Regressão Linear
+			// ================================================================
+			
+			RETURN
+			    IF(
+			        Variacao <= 0.05,
+			        ProjecaoCAGR,
+			        ProjecaoLinear
+			    )
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 04. Forecast
+		lineageTag: ae6ded50-4d57-4d9a-aba2-3140bacf2d08
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Crescimento Projetado 2025' =
+			
+			DIVIDE(
+			    [Projeção Receita 2025] - [Receita 2024 Anualizada],
+			    [Receita 2024 Anualizada],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 04. Forecast
+		lineageTag: e9b524d1-2083-4ac5-b0bc-fba7f1324336
+
+	measure 'Modelo Forecast Selecionado' =
+			
+			VAR Receita2022 =
+			    [Receita 2022 Jan-Nov]
+			
+			VAR Receita2023 =
+			    [Receita 2023 Jan-Nov]
+			
+			VAR Cresc23 =
+			    DIVIDE(
+			        Receita2023 - Receita2022,
+			        Receita2022,
+			        0
+			    )
+			
+			VAR Cresc24 =
+			    DIVIDE(
+			        [Receita 2024 Jan-Nov] - Receita2023,
+			        Receita2023,
+			        0
+			    )
+			
+			VAR Variacao =
+			    ABS(
+			        Cresc24 - Cresc23
+			    )
+			
+			RETURN
+			    IF(
+			        Variacao <= 0.05,
+			        "CAGR",
+			        "Regressão Linear"
+			    )
+		displayFolder: 04. Forecast
+		lineageTag: b9f3c6b7-4435-46ee-a896-e0520f468588
+
+	measure 'Justificativa Modelo Forecast' =
+			
+			VAR Receita2022 =
+			    [Receita 2022 Jan-Nov]
+			
+			VAR Receita2023 =
+			    [Receita 2023 Jan-Nov]
+			
+			VAR Cresc23 =
+			    DIVIDE(
+			        Receita2023 - Receita2022,
+			        Receita2022,
+			        0
+			    )
+			
+			VAR Cresc24 =
+			    DIVIDE(
+			        [Receita 2024 Jan-Nov] - Receita2023,
+			        Receita2023,
+			        0
+			    )
+			
+			VAR Variacao =
+			    ABS(
+			        Cresc24 - Cresc23
+			    )
+			
+			RETURN
+			    IF(
+			        Variacao <= 0.05,
+			        "Crescimento histórico relativamente estável. CAGR selecionado.",
+			        "Mudança relevante na trajetória de crescimento. Regressão Linear selecionada."
+			    )
+		displayFolder: 04. Forecast
+		lineageTag: d1235909-c44d-4aad-8e75-9a8083498c39
+
+	measure 'Status Crescimento' =
+			
+			VAR Crescimento =
+			    [Crescimento YoY Regional Válido]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        ISBLANK(Crescimento),
+			            "Base Insuficiente",
+			
+			        Crescimento >= 0.10,
+			            "Forte Crescimento",
+			
+			        Crescimento >= 0.05,
+			            "Crescimento",
+			
+			        Crescimento <= -0.05,
+			            "Queda",
+			
+			        "Estável"
+			    )
+		displayFolder: 05. Regional
+		lineageTag: 290ddff5-7d79-4b6c-87e0-08f0f09fbed9
+
+	measure 'Meta Sugerida' =
+			
+			VAR ReceitaAtual =
+			    [Receita Período Atual]
+			
+			VAR TaxaMeta =
+			    [Taxa Meta Sugerida]
+			
+			RETURN
+			    ReceitaAtual * (1 + TaxaMeta)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 05. Regional
+		lineageTag: d6a4187b-45e9-4bdb-a4cd-d01cd3afac6e
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Taxa Meta Sugerida' =
+			
+			VAR Crescimento =
+			    [Crescimento YoY]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        ISBLANK(Crescimento),
+			            0.05,
+			
+			        Crescimento > 0.10,
+			            0.10,
+			
+			        Crescimento > 0.05,
+			            0.08,
+			
+			        Crescimento >= -0.05,
+			            0.05,
+			
+			        0.03
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 05. Regional
+		lineageTag: 3850d570-10bc-4f46-b545-d7145f6ef031
+
+	measure 'Gap para Meta' =
+			
+			[Meta Sugerida] - [Receita Período Atual]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: 05. Regional
+		lineageTag: 4671e98a-1ad3-4660-a83e-63e35cb11140
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Status Meta' =
+			
+			VAR ReceitaAtual =
+			    [Receita]
+			
+			VAR Meta =
+			    [Meta Sugerida]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        ISBLANK(ReceitaAtual),
+			            "Sem dados",
+			
+			        ReceitaAtual >= Meta,
+			            "Meta atingida",
+			
+			        "Abaixo da meta"
+			    )
+		displayFolder: 05. Regional
+		lineageTag: c4616033-fb97-46a3-b668-dcf8c6c46ff1
+
+	measure 'Receita Share' =
+			
+			DIVIDE(
+			    [Receita],
+			    CALCULATE(
+			        [Receita],
+			        ALLSELECTED(mart_sales)
+			    ),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 06. Estratégia
+		lineageTag: fcdb02a2-ae6b-4b72-89a5-5bfc380acd9c
+
+	measure 'Opportunity Score' =
+			
+			/*
+			    OBJETIVO
+			    ----------------------------------------------------------------
+			    Criar um índice de oportunidade entre 0 e 100 combinando:
+			
+			        40% Crescimento YoY
+			        30% Monetização por Stream
+			        30% Participação na Receita
+			
+			    O score só é calculado para gêneros com crescimento válido.
+			*/
+			
+			VAR CrescimentoAtual =
+			    [Crescimento YoY Oportunidade Válido]
+			
+			VAR MonetizacaoAtual =
+			    [Receita por Stream]
+			
+			VAR ParticipacaoAtual =
+			    [Receita Share]
+			
+			VAR CrescimentoMinimo =
+			    MINX(
+			        ALLSELECTED(mart_sales[genre_name]),
+			        [Crescimento YoY Oportunidade Válido]
+			    )
+			
+			VAR CrescimentoMaximo =
+			    MAXX(
+			        ALLSELECTED(mart_sales[genre_name]),
+			        [Crescimento YoY Oportunidade Válido]
+			    )
+			
+			VAR CrescimentoNormalizado =
+			    DIVIDE(
+			        CrescimentoAtual - CrescimentoMinimo,
+			        CrescimentoMaximo - CrescimentoMinimo,
+			        0
+			    )
+			
+			VAR MonetizacaoMinima =
+			    MINX(
+			        ALLSELECTED(mart_sales[genre_name]),
+			        [Receita por Stream]
+			    )
+			
+			VAR MonetizacaoMaxima =
+			    MAXX(
+			        ALLSELECTED(mart_sales[genre_name]),
+			        [Receita por Stream]
+			    )
+			
+			VAR MonetizacaoNormalizada =
+			    DIVIDE(
+			        MonetizacaoAtual - MonetizacaoMinima,
+			        MonetizacaoMaxima - MonetizacaoMinima,
+			        0
+			    )
+			
+			VAR ParticipacaoMinima =
+			    MINX(
+			        ALLSELECTED(mart_sales[genre_name]),
+			        [Receita Share]
+			    )
+			
+			VAR ParticipacaoMaxima =
+			    MAXX(
+			        ALLSELECTED(mart_sales[genre_name]),
+			        [Receita Share]
+			    )
+			
+			VAR ParticipacaoNormalizada =
+			    DIVIDE(
+			        ParticipacaoAtual - ParticipacaoMinima,
+			        ParticipacaoMaxima - ParticipacaoMinima,
+			        0
+			    )
+			
+			VAR Score =
+			      CrescimentoNormalizado * 0.40
+			    + MonetizacaoNormalizada * 0.30
+			    + ParticipacaoNormalizada * 0.30
+			
+			RETURN
+			    IF(
+			        ISBLANK(CrescimentoAtual),
+			        BLANK(),
+			        Score * 100
+			    )
+		formatString: 0.0
+		displayFolder: 06. Estratégia
+		lineageTag: 576e0523-8396-4cda-b9a9-debaeaee8907
+
+	measure 'Quadrante Estratégico' =
+			
+			/*
+			    OBJETIVO
+			    ----------------------------------------------------------------
+			    Classificar o contexto analisado em um quadrante estratégico
+			    combinando:
+			
+			        Crescimento YoY atual
+			        Monetização por Stream
+			
+			    O crescimento compara o último período anual válido:
+			        Jan-Nov/2024
+			        vs.
+			        Jan-Nov/2023
+			
+			    A monetização é comparada com a média relativa dos gêneros
+			    disponíveis no contexto atual dos filtros.
+			
+			    Os filtros de Store e Country são preservados.
+			*/
+			
+			
+			VAR Crescimento =
+			    [Crescimento YoY Oportunidade Válido]
+			
+			
+			VAR Monetizacao =
+			    [Receita por Stream]
+			
+			
+			// ================================================================
+			// BENCHMARK DE MONETIZAÇÃO
+			//
+			// Calcula a média de Receita por Stream entre os gêneros
+			// disponíveis no contexto atual.
+			//
+			// O filtro direto de Genre é removido para permitir comparação.
+			//
+			// Filtros de Store e Country permanecem ativos.
+			// ================================================================
+			
+			VAR MediaMonetizacao =
+			    AVERAGEX(
+			        CALCULATETABLE(
+			            VALUES(
+			                mart_sales[genre_name]
+			            ),
+			            REMOVEFILTERS(
+			                mart_sales[genre_name]
+			            )
+			        ),
+			        CALCULATE(
+			            [Receita por Stream]
+			        )
+			    )
+			
+			
+			// ================================================================
+			// CLASSIFICAÇÃO ESTRATÉGICA
+			//
+			// Crescimento >= 5% + Alta Monetização
+			//     → Stars
+			//
+			// Crescimento >= 5% + Baixa Monetização
+			//     → Growth Opportunity
+			//
+			// Crescimento < 5% + Alta Monetização
+			//     → Monetization Opportunity
+			//
+			// Crescimento < 5% + Baixa Monetização
+			//     → Low Priority
+			// ================================================================
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        ISBLANK(Crescimento)
+			            || ISBLANK(Monetizacao),
+			            "Sem classificação",
+			
+			        Crescimento >= 0.05
+			            && Monetizacao >= MediaMonetizacao,
+			            "Stars",
+			
+			        Crescimento >= 0.05
+			            && Monetizacao < MediaMonetizacao,
+			            "Growth Opportunity",
+			
+			        Crescimento < 0.05
+			            && Monetizacao >= MediaMonetizacao,
+			            "Monetization Opportunity",
+			
+			        "Low Priority"
+			    )
+		displayFolder: 06. Estratégia
+		lineageTag: 537552c4-2615-4464-942a-01d1c7cc97d9
+
+	measure 'Estratégia Recomendada' =
+			
+			VAR Quadrante =
+			    [Quadrante Estratégico]
+			
+			RETURN
+			    SWITCH(
+			        Quadrante,
+			
+			        "Stars",
+			            "Expandir investimento e escala",
+			
+			        "Growth Opportunity",
+			            "Melhorar monetização dos streams",
+			
+			        "Monetization Opportunity",
+			            "Aumentar volume de audiência",
+			
+			        "Low Priority",
+			            "Revisar prioridade estratégica",
+			
+			        "Sem classificação"
+			    )
+		displayFolder: 06. Estratégia
+		lineageTag: 14baff04-d57f-4a28-b6ef-8b34fd0191d4
+
+	measure 'Receita PY' =
+			
+			CALCULATE(
+			    [Receita],
+			    DATEADD(
+			        'Calendar'[Date],
+			        -1,
+			        YEAR
+			    )
+			)
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: 03. Crescimento
+		lineageTag: d8ad261f-ca96-435a-915f-c5b3234d16d7
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-US"}
+
+	measure 'Crescimento YoY Atual' =
+			
+			VAR UltimoAno =
+			    MAXX(
+			        FILTER(
+			            ALL(mart_sales),
+			            mart_sales[year] < 2025
+			        ),
+			        mart_sales[year]
+			    )
+			
+			VAR UltimoMesValido =
+			    11
+			
+			VAR ReceitaAnoAtual =
+			    CALCULATE(
+			        [Receita],
+			        REMOVEFILTERS('Calendar'),
+			        'Calendar'[Year] = UltimoAno,
+			        'Calendar'[Month Number] <= UltimoMesValido
+			    )
+			
+			VAR ReceitaAnoAnterior =
+			    CALCULATE(
+			        [Receita],
+			        REMOVEFILTERS('Calendar'),
+			        'Calendar'[Year] = UltimoAno - 1,
+			        'Calendar'[Month Number] <= UltimoMesValido
+			    )
+			
+			RETURN
+			    DIVIDE(
+			        ReceitaAnoAtual - ReceitaAnoAnterior,
+			        ReceitaAnoAnterior,
+			        0
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 03. Crescimento
+		lineageTag: 0fdf5457-ce49-4bda-87b9-122f55800f92
+
+	measure 'Classificação Oportunidade' =
+			
+			/*
+			    Classifica o Opportunity Score em cinco níveis.
+			
+			    Score 80-100  = Muito Alta
+			    Score 60-80   = Alta
+			    Score 40-60   = Moderada
+			    Score 20-40   = Baixa
+			    Score 0-20    = Muito Baixa
+			*/
+			
+			VAR Score =
+			    [Opportunity Score]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			
+			        ISBLANK(Score),
+			            "Sem classificação",
+			
+			        Score >= 80,
+			            "Muito Alta",
+			
+			        Score >= 60,
+			            "Alta",
+			
+			        Score >= 40,
+			            "Moderada",
+			
+			        Score >= 20,
+			            "Baixa",
+			
+			        "Muito Baixa"
+			    )
+		displayFolder: 06. Estratégia
+		lineageTag: 019ef4d3-0136-46e1-9dc7-d441cb5ad056
+
+	measure 'Top Opportunity' =
+			
+			/*
+			    Identifica o gênero com maior Opportunity Score
+			    dentro do contexto atual de filtros.
+			
+			    Os filtros de Store e Country são preservados.
+			
+			    O filtro direto de Genre é removido apenas durante
+			    o ranking para permitir a comparação entre gêneros.
+			*/
+			
+			VAR TabelaGeneros =
+			    CALCULATETABLE(
+			        VALUES(
+			            mart_sales[genre_name]
+			        ),
+			        REMOVEFILTERS(
+			            mart_sales[genre_name]
+			        )
+			    )
+			
+			VAR RankingGeneros =
+			    ADDCOLUMNS(
+			        TabelaGeneros,
+			        "@OpportunityScore",
+			            CALCULATE(
+			                [Opportunity Score]
+			            )
+			    )
+			
+			VAR TopGenero =
+			    TOPN(
+			        1,
+			        RankingGeneros,
+			        [@OpportunityScore],
+			        DESC,
+			        mart_sales[genre_name],
+			        ASC
+			    )
+			
+			RETURN
+			    CONCATENATEX(
+			        TopGenero,
+			        mart_sales[genre_name],
+			        ", "
+			    )
+		displayFolder: 06. Estratégia
+		lineageTag: b672baf9-a22b-430b-aaac-fa53cdde0ef4
+
+	measure 'Rank Crescimento País' =
+			
+			RANKX(
+			    FILTER(
+			        ALLSELECTED(mart_sales[country_code]),
+			        NOT ISBLANK([Crescimento YoY Regional Válido])
+			            && [Crescimento YoY Regional Válido] > 0
+			    ),
+			    [Crescimento YoY Regional Válido],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: 0
+		displayFolder: 05. Regional
+		lineageTag: e404bc78-66b0-4352-a0da-5f22dd4df87e
+
+	measure 'Rank Queda País' =
+			
+			RANKX(
+			    FILTER(
+			        ALLSELECTED(mart_sales[country_code]),
+			        NOT ISBLANK([Crescimento YoY Regional Válido])
+			            && [Crescimento YoY Regional Válido] < 0
+			    ),
+			    [Crescimento YoY Regional Válido],
+			    ,
+			    ASC,
+			    DENSE
+			)
+		formatString: 0
+		displayFolder: 05. Regional
+		lineageTag: 6f42f714-d375-4656-8e70-5854ae3f4bf1
+
+	measure 'Receita PY Atual' =
+			
+			/*
+			    Receita do mesmo período do ano anterior.
+			
+			    Contexto atual:
+			        Jan-Nov/2023
+			
+			    Preserva os filtros de:
+			        Store
+			        Country
+			        Genre
+			*/
+			
+			VAR UltimoAno =
+			    MAXX(
+			        FILTER(
+			            ALL(mart_sales),
+			            mart_sales[year] < 2025
+			        ),
+			        mart_sales[year]
+			    )
+			
+			VAR UltimoMesValido =
+			    11
+			
+			RETURN
+			    CALCULATE(
+			        [Receita],
+			        REMOVEFILTERS('Calendar'),
+			        'Calendar'[Year] = UltimoAno - 1,
+			        'Calendar'[Month Number] <= UltimoMesValido
+			    )
+		displayFolder: 05. Regional
+		lineageTag: 5a852cd5-ae42-4acd-906b-87db1310581d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Crescimento YoY Regional Válido' =
+			
+			/*
+			    Evita distorções percentuais causadas por países
+			    com base histórica financeiramente irrelevante.
+			
+			    Um país somente participa da análise regional de
+			    crescimento quando sua receita no período anterior
+			    representa pelo menos 0,01% da receita global
+			    do mesmo período.
+			
+			    O crescimento matemático original continua disponível
+			    em [Crescimento YoY Atual].
+			*/
+			
+			VAR ReceitaAnterior =
+			    [Receita PY Atual]
+			
+			VAR ReceitaGlobalAnterior =
+			    CALCULATE(
+			        [Receita PY Atual],
+			        REMOVEFILTERS(mart_sales[country_code])
+			    )
+			
+			VAR ParticipacaoAnterior =
+			    DIVIDE(
+			        ReceitaAnterior,
+			        ReceitaGlobalAnterior
+			    )
+			
+			RETURN
+			    IF(
+			        ParticipacaoAnterior >= 0.0001,
+			        [Crescimento YoY Atual],
+			        BLANK()
+			    )
+		displayFolder: 05. Regional
+		lineageTag: a05c5800-cf47-46b7-9b52-18e991e8d694
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receita Período Atual' =
+			
+			VAR UltimoAno =
+			    MAXX(
+			        FILTER(
+			            ALL(mart_sales),
+			            mart_sales[year] < 2025
+			        ),
+			        mart_sales[year]
+			    )
+			
+			VAR UltimoMesValido =
+			    11
+			
+			RETURN
+			    CALCULATE(
+			        [Receita],
+			        REMOVEFILTERS('Calendar'),
+			        'Calendar'[Year] = UltimoAno,
+			        'Calendar'[Month Number] <= UltimoMesValido
+			    )
+		displayFolder: 05. Regional
+		lineageTag: 67b0f2a9-c0ce-41d4-bf0e-dd0214dbe5e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Receita PY Oportunidade' =
+			
+			/*
+			    Receita do mesmo período do ano anterior
+			    utilizada como base para análise estratégica
+			    por gênero.
+			
+			    Período atual:
+			        Jan-Nov/2024
+			
+			    Período anterior:
+			        Jan-Nov/2023
+			
+			    Preserva filtros de Store e Country.
+			*/
+			
+			VAR UltimoAno =
+			    MAXX(
+			        FILTER(
+			            ALL(mart_sales),
+			            mart_sales[year] < 2025
+			        ),
+			        mart_sales[year]
+			    )
+			
+			VAR UltimoMesValido =
+			    11
+			
+			RETURN
+			    CALCULATE(
+			        [Receita],
+			        REMOVEFILTERS('Calendar'),
+			        'Calendar'[Year] = UltimoAno - 1,
+			        'Calendar'[Month Number] <= UltimoMesValido
+			    )
+		displayFolder: 06. Estratégia
+		lineageTag: 95b9ee79-2d2c-452b-9daa-f0d57c547a1f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Crescimento YoY Oportunidade Válido' =
+			
+			/*
+			    Remove distorções percentuais causadas por gêneros
+			    com base histórica financeiramente irrelevante.
+			
+			    O gênero participa da análise estratégica quando
+			    representava pelo menos 0,01% da receita do contexto
+			    no período anterior.
+			
+			    Filtros de Store e Country são preservados.
+			*/
+			
+			VAR ReceitaAnterior =
+			    [Receita PY Oportunidade]
+			
+			VAR ReceitaGlobalAnterior =
+			    CALCULATE(
+			        [Receita PY Oportunidade],
+			        REMOVEFILTERS(mart_sales[genre_name])
+			    )
+			
+			VAR ParticipacaoAnterior =
+			    DIVIDE(
+			        ReceitaAnterior,
+			        ReceitaGlobalAnterior
+			    )
+			
+			RETURN
+			    IF(
+			        ParticipacaoAnterior >= 0.0001,
+			        [Crescimento YoY Atual],
+			        BLANK()
+			    )
+		displayFolder: 06. Estratégia
+		lineageTag: 5c22193c-6196-4fc1-81e9-c5ec5a99619b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Top Genre Conversion' =
+			
+			/*
+			    Identifica o gênero com maior eficiência de monetização
+			    entre os gêneros com volume material de streams.
+			
+			    Store e Country permanecem no contexto de filtros.
+			*/
+			
+			VAR TabelaGeneros =
+			    CALCULATETABLE(
+			        VALUES(
+			            mart_sales[genre_name]
+			        ),
+			        REMOVEFILTERS(
+			            mart_sales[genre_name]
+			        )
+			    )
+			
+			VAR RankingGeneros =
+			    ADDCOLUMNS(
+			        TabelaGeneros,
+			        "@Conversion",
+			            CALCULATE(
+			                [Receita por Stream Válida]
+			            )
+			    )
+			
+			VAR GenerosValidos =
+			    FILTER(
+			        RankingGeneros,
+			        NOT ISBLANK(
+			            [@Conversion]
+			        )
+			    )
+			
+			VAR TopGenero =
+			    TOPN(
+			        1,
+			        GenerosValidos,
+			        [@Conversion],
+			        DESC,
+			        mart_sales[genre_name],
+			        ASC
+			    )
+			
+			RETURN
+			    CONCATENATEX(
+			        TopGenero,
+			        mart_sales[genre_name],
+			        ", "
+			    )
+		displayFolder: 02. Monetização
+		lineageTag: 277fefc0-cb55-4c06-8ca2-37582369f51b
+
+	measure 'Receita por Stream Válida' =
+			
+			/*
+			    OBJETIVO
+			    ----------------------------------------------------------------
+			    Calcular a eficiência de monetização por stream somente para
+			    gêneros com volume de streams material no contexto analisado.
+			
+			    Um gênero participa da análise de conversão quando representa
+			    pelo menos 0,01% dos streams do contexto atual.
+			
+			    Os filtros de Store e Country são preservados.
+			*/
+			
+			VAR StreamsGenero =
+			    [Streams]
+			
+			VAR StreamsContexto =
+			    CALCULATE(
+			        [Streams],
+			        REMOVEFILTERS(
+			            mart_sales[genre_name]
+			        )
+			    )
+			
+			VAR ParticipacaoStreams =
+			    DIVIDE(
+			        StreamsGenero,
+			        StreamsContexto
+			    )
+			
+			RETURN
+			    IF(
+			        ParticipacaoStreams >= 0.0001,
+			        [Receita por Stream],
+			        BLANK()
+			    )
+		displayFolder: 02. Monetização
+		lineageTag: 6ea69786-c2f4-4eaf-bf87-442ca47fc655
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: 4ddff852-54d0-482b-bba0-27d7374752dd
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCshJTE7NyM9JSS1SitWJVjJUio0FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

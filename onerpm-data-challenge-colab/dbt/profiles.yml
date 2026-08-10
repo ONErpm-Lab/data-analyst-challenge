@@ -1,0 +1,8 @@
+onerpm:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /content/onerpm-data-challenge-colab/warehouse/onerpm.duckdb
+      threads: 4
+      
